@@ -1,59 +1,72 @@
-package TreinamentosERevisoes;
 import java.util.Scanner;
 
+public class SistemaControleNotas {
 
-public class Treino2 {
+    public static void main(String[] args) {
 
-	public static void main(String[] args) {
-		
-		Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Quantidade de alunos da turma: ");
-		int quantalunos = scanner.nextInt();
-		scanner.nextLine(); // limpa o Enter pendente
-		
-		double somanotas = 0;
-		double maiornota = 0;
-		double menornota = Double.MAX_VALUE;
-		int aprovados = 0;
-		String nomeMaiorNota = "";
-		double mediaSala = 0;
-		
-		for (int i = 1; i <= quantalunos; i++) { 
-		  
-		  System.out.println("Digite o nome do aluno: ");
-		  String aluno = scanner.nextLine();
+        Scanner scanner = new Scanner(System.in);
 
-          System.out.println("Digite a nota do aluno: ");
-		  double nota = scanner.nextDouble();
-		  scanner.nextLine(); // limpa o Enter depois da nota
-          
-          somanotas += nota;
-          
-            if (maiornota < nota) {	  
-               	maiornota = nota;           
-               	nomeMaiorNota = aluno;
-          }
-            if (menornota > nota) {
-                menornota = nota;
+        System.out.println("Quantidade de alunos: ");
+        int quantidadeAlunos = scanner.nextInt();
+        scanner.nextLine();
+
+        if (quantidadeAlunos <= 0) {
+            System.out.println("Quantidade inválida.");
+            scanner.close();
+            return;
+        }
+
+        double somaNotas = 0;
+        double maiorNota = 0;
+        double menorNota = Double.MAX_VALUE;
+        int aprovados = 0;
+        String nomeMaiorNota = "";
+
+        for (int i = 1; i <= quantidadeAlunos; i++) {
+
+            System.out.println("\nAluno " + i);
+
+            System.out.println("Nome: ");
+            String nome = scanner.nextLine();
+
+            System.out.println("Nota: ");
+            double nota = scanner.nextDouble();
+            scanner.nextLine();
+
+            somaNotas += nota;
+
+            if (nota > maiorNota) {
+                maiorNota = nota;
+                nomeMaiorNota = nome;
             }
-            
+
+            if (nota < menorNota) {
+                menorNota = nota;
+            }
+
             if (nota >= 6) {
-            	   aprovados++;
-            	}
+                aprovados++;
+            }
+        }
 
-            
-		}
-		
-		 mediaSala = (somanotas / quantalunos);
-		
-		 System.out.printf("Média da turma: %.2f%n", mediaSala);
-         System.out.printf("Maior nota: %.2f%n", maiornota);
-         System.out.printf("Menor nota: %.2f%n", menornota);
-         System.out.printf("Aprovados: %d%n", aprovados);
-         System.out.printf("Aluno com a maior nota: %s%n", nomeMaiorNota);
-         
-         scanner.close();
-	}
+        double media = calcularMedia(somaNotas, quantidadeAlunos);
 
+        mostrarRelatorio(media, maiorNota, menorNota, aprovados, nomeMaiorNota);
+
+        scanner.close();
+    }
+
+    public static double calcularMedia(double soma, int quantidade) {
+        return soma / quantidade;
+    }
+
+    public static void mostrarRelatorio(double media, double maior, double menor,
+                                        int aprovados, String nomeMaior) {
+
+        System.out.println("\n===== RELATÓRIO FINAL =====");
+        System.out.printf("Média da turma: %.2f%n", media);
+        System.out.printf("Maior nota: %.2f (%s)%n", maior, nomeMaior);
+        System.out.printf("Menor nota: %.2f%n", menor);
+        System.out.printf("Aprovados: %d%n", aprovados);
+    }
 }
