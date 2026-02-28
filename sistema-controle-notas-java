@@ -10,7 +10,7 @@ public class Treino2 {
 		
 		System.out.println("Quantidade de alunos da turma: ");
 		int quantalunos = scanner.nextInt();
-		scanner.nextLine(); // limpa o Enter pendente
+		scanner.nextLine(); 
 		
 		double somanotas = 0;
 		double maiornota = 0;
@@ -26,7 +26,7 @@ public class Treino2 {
 
           System.out.println("Digite a nota do aluno: ");
 		  double nota = scanner.nextDouble();
-		  scanner.nextLine(); // limpa o Enter depois da nota
+		  scanner.nextLine(); 
           
           somanotas += nota;
           
