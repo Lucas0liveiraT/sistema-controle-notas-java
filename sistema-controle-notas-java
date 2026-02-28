@@ -22,11 +22,12 @@ public class Treino2 {
 		for (int i = 1; i <= quantalunos; i++) { 
 		  
 		  System.out.println("Digite o nome do aluno: ");
-		  String aluno = scanner.nextLine();
+		    String aluno = scanner.nextLine();
+             scanner.nextLine(); 
 
           System.out.println("Digite a nota do aluno: ");
-		  double nota = scanner.nextDouble();
-		  scanner.nextLine(); 
+		    double nota = scanner.nextDouble();
+		     scanner.nextLine(); 
           
           somanotas += nota;
           
